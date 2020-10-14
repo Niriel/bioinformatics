@@ -6,7 +6,7 @@ from dnalib.nucleotides import \
     count_nucleotides, \
     transcribe_to_rna, \
     transcribe_to_dna, \
-    complement_dna
+    complement_dna, reverse_complement_dna
 
 
 def test_str_to_dna():
@@ -101,3 +101,9 @@ def test_complement_dna():
     dna_0 = str_to_dna('gattaca')
     dna_1 = str_to_dna('ctaatgt')
     assert complement_dna(dna_0) == dna_1
+
+
+def test_reverse_complement_dna():
+    dna_0 = str_to_dna('gattaca')
+    dna_1 = str_to_dna('tgtaatc')
+    assert reverse_complement_dna(dna_0) == dna_1

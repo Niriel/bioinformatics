@@ -73,3 +73,7 @@ def transcribe_to_dna(rna):
 
 def complement_dna(dna):
     return transcribe_seq(DNA_COMPLEMENT, dna)
+
+
+def reverse_complement_dna(dna):
+    return transcribe_seq(DNA_COMPLEMENT, reversed(dna))
