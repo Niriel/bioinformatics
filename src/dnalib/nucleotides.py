@@ -3,6 +3,28 @@ NUCLEOTIDES = [A, C, G, T, U]
 NUCLEOTIDES_DNA = [A, C, G, T]
 NUCLEOTIDES_RNA = [A, C, G, U]
 
+STR_TO_DNA = {'a': A, 'A': A,
+              'c': C, 'C': C,
+              'g': G, 'G': G,
+              't': T, 'T': T}
+
+STR_TO_RNA = {'a': A, 'A': A,
+              'c': C, 'C': C,
+              'g': G, 'G': G,
+              'u': U, 'U': U}
+
+
+def str_to_dna(xs):
+    return [STR_TO_DNA[x] for x in xs]
+
+
+def str_to_rna(xs):
+    return [STR_TO_RNA[x] for x in xs]
+
+
+def seq_to_str(seq):
+    return ''.join(map(str, seq))
+
 
 def is_dna_nucleotide(thing):
     return thing in NUCLEOTIDES_DNA
@@ -30,7 +52,7 @@ def count_nucleotides(seq):
 # Transcription rules.
 DNA_TO_RNA = {T: U}
 RNA_TO_DNA = {U: T}
-DNA_COMPLEMENT = {A: C, C: A, G: T, T: G}
+DNA_COMPLEMENT = {A: T, C: G, G: C, T: A}
 
 
 def transcribe_nuc(rule, nuc):
@@ -47,3 +69,7 @@ def transcribe_to_rna(dna):
 
 def transcribe_to_dna(rna):
     return transcribe_seq(RNA_TO_DNA, rna)
+
+
+def complement_dna(dna):
+    return transcribe_seq(DNA_COMPLEMENT, dna)

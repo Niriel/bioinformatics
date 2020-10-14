@@ -1,8 +1,5 @@
-from dnalib.nucleotides import NUCLEOTIDES_DNA, count_nucleotides, transcribe_to_rna
-
-
-def rosalind_seq_format(seq):
-    return ''.join((str(nuc) for nuc in seq))
+from dnalib.nucleotides import A, C, T, G, NUCLEOTIDES_DNA, count_nucleotides, transcribe_to_rna, seq_to_str, \
+    str_to_dna, str_to_rna
 
 
 def rosalind_count_dna(histogram):
@@ -10,7 +7,7 @@ def rosalind_count_dna(histogram):
 
 
 def test_rosalind_count_dna():
-    s = 'AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC'
+    s = str_to_dna('AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC')
     assert rosalind_count_dna(count_nucleotides(s)) == '20 12 17 21'
 
 
@@ -24,7 +21,7 @@ def rosalind_01():
         'TGCGAGGCATGTACTCAACTGTCTTGAGTGGCCAGGATTTGAGGTTGACGAGGGCCTGAAAAATTGTGAGCTTGGTGGGAAGAGAGAGAAGGAGGAGTTCTATTCTG' \
         'CATCATGCGGCATCCTCCAGGAGTTCCCGCAATATTTAGTAGGGCGGTCCGGTAGCCCGCTAAGAGACGCCTGAGTGACAGAAATCATGGACGCCCGGCGCGTCACT' \
         'ATTAACTAATTAGCTGCATAAGATCGAGCGGACCGTGACGATAAGATCGAAGATGTGAGCTTTCTAAAACAGTGGGGCGGACTTCACGTTTCGAGCGCTGGGCCA'
-    print(rosalind_count_dna(count_nucleotides(s)))
+    print(rosalind_count_dna(count_nucleotides(str_to_dna(s))))
 
 
 def rosalind_02():
@@ -37,7 +34,7 @@ def rosalind_02():
         'AGGCCCAAACCATTCCGATAGAAGCGTAGTCGCGGTGGAGTGCCGTGTACATTCAAGGATCACACGCTGCACATTATATCGCTGAAGCCCACGAAAAAAAATAGCGC' \
         'CCCGGACGTAGCGAGCCGTATGCCATTCCTTTCCGTGTGCTAGCCCCCATGAGTTTAGGTCACTGCCCCCAATCGCGCTTTCAGGCTAGTATCAGTTAAGCCACTAA' \
         'ACGTGGACACCTACTCTGTCACCATCATTGCTTGGAGAGTTAGATGGGGCCAGGAGCAATTAAATATTGCCGCTAGCCACCATTAACACGAGCCTTACTATTTACT'
-    print(rosalind_seq_format(transcribe_to_rna(s)))
+    print(seq_to_str(transcribe_to_rna(str_to_dna(s))))
 
 
 if __name__ == '__main__':
