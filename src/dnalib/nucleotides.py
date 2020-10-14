@@ -1,8 +1,7 @@
-# https://www.youtube.com/watch?v=Wkx0fI4e0fs
-
-NUCLEOTIDES_DNA = list('ACGT')
-NUCLEOTIDES_RNA = list('ACGU')
-NUCLEOTIDES = list(sorted(set(NUCLEOTIDES_DNA).union(NUCLEOTIDES_RNA)))
+A, C, G, T, U = 'A', 'C', 'G', 'T', 'U'
+NUCLEOTIDES = [A, C, G, T, U]
+NUCLEOTIDES_DNA = [A, C, G, T]
+NUCLEOTIDES_RNA = [A, C, G, U]
 
 
 def is_dna_nucleotide(thing):
@@ -13,12 +12,12 @@ def is_rna_nucleotide(thing):
     return thing in NUCLEOTIDES_RNA
 
 
-def is_dna_sequence(seq):
-    return all(map(is_dna_nucleotide, seq))
+def is_dna_sequence(iterable):
+    return all(map(is_dna_nucleotide, iterable))
 
 
-def is_rna_sequence(seq):
-    return all(map(is_rna_nucleotide, seq))
+def is_rna_sequence(iterable):
+    return all(map(is_rna_nucleotide, iterable))
 
 
 def count_nucleotides(seq):
@@ -28,13 +27,23 @@ def count_nucleotides(seq):
     return {n: seq.count(n) for n in NUCLEOTIDES}
 
 
-def rosalind_count_dna(histogram):
-    return ' '.join(str(histogram[n]) for n in NUCLEOTIDES_DNA)
+# Transcription rules.
+DNA_TO_RNA = {T: U}
+RNA_TO_DNA = {U: T}
+DNA_COMPLEMENT = {A: C, C: A, G: T, T: G}
+
+
+def transcribe_nuc(rule, nuc):
+    return rule.get(nuc, nuc)
+
+
+def transcribe_seq(rule, seq):
+    return [transcribe_nuc(rule, nuc) for nuc in seq]
 
 
 def transcribe_to_rna(dna):
-    try:
-        return dna.replace('T', 'U')
-    except AttributeError:  # It's not a string.
-        pass
-    return ('U' if n == 'T' else n for n in dna)
+    return transcribe_seq(DNA_TO_RNA, dna)
+
+
+def transcribe_to_dna(rna):
+    return transcribe_seq(RNA_TO_DNA, rna)
