@@ -1,5 +1,9 @@
-from dnalib.nucleotides import A, C, T, G, NUCLEOTIDES_DNA, count_nucleotides, transcribe_to_rna, seq_to_str, \
-    str_to_dna, str_to_rna
+from dnalib.nucleotides import \
+    NUCLEOTIDES_DNA, \
+    seq_to_str, \
+    str_to_dna, \
+    count_nucleotides, \
+    transcribe_to_rna
 
 
 def rosalind_count_dna(histogram):
