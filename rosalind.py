@@ -7,7 +7,7 @@ from dnalib.nucleotides import \
     reverse_complement_dna
 
 
-def rosalind_01():
+def rosalind_DNA():
     def rosalind_count_dna(histogram):
         return ' '.join(str(histogram[n]) for n in NUCLEOTIDES_DNA)
 
@@ -23,7 +23,7 @@ def rosalind_01():
     print(rosalind_count_dna(count_nucleotides(str_to_dna(s))))
 
 
-def rosalind_02():
+def rosalind_RNA():
     s = 'AGCAGTGCGGTCTCGGGCCGGCTTGGCTGTCTCGACCGATGTGCGCTCATGCGCGTCGAATGATGATGATACACGTGTTTGACAATTTGTATTCATTAGTTCTGAGC' \
         'GAACATTCGTGACGGCGCGGAGTAGCCGGATTAATACTACGTAGTCCCAGTGGTTCGTCGCGGGAGTCCATCAGCGGCAGATACCCGTAGGAAAGCGCTCGTTACGG' \
         'TTTGGGCATCCCCCAGACATCTCCGCACCCTGGCCAAGTGGGAACGCCCGTGACTCGCCTTCGCTCGTGGAAGAGCGATAGTTTTTGGTTACAGGTTATTGATTCCG' \
@@ -36,7 +36,7 @@ def rosalind_02():
     print(seq_to_str(transcribe_to_rna(str_to_dna(s))))
 
 
-def rosalind_03():
+def rosalind_REVC():
     s = 'GCACGCGTCGACGTGATGCGTTTCTGCACCTAAATAACCTCTTCTGAACCATTTGGGTCATGGGGCGTACACCTGTGGCCTAGATAGCATAAGAAGCATCCGGCAAA' \
         'ACAAAATAACCCTTCTTCTGAGGATACCGGAAAAGCAGCCAACAGTTTATGAAGGTAGCCCGATTCTAGAATTGAATCCTCTCTTGACATGAAATAGAGCCGTGTGC' \
         'GCGGCTCAAAACCCACTTGGAGACAGAGGCGCGACTTGTAGTTTTATGTCAAATCTGACTGTATCAAGGTCGTCTTGACCGTAGGTATAGAAAGCGAGAAGGTAATT' \
@@ -51,5 +51,17 @@ def rosalind_03():
     print(seq_to_str(dna_reverse))
 
 
+def rosalind_FIB():
+    bunnies = [1, 1]
+    n = 31
+    k = 5
+    for i in range(n - 2):
+        # [-2]*k : because pregnancy lasts one month, bunnies of two months ago give birth, each to k bunny pairs.
+        # [-1]: those are babies, they'll be adults next month.
+        x = bunnies[-2] * k + bunnies[-1]
+        bunnies.append(x)
+    print(bunnies)
+
+
 if __name__ == '__main__':
-    rosalind_03()
+    rosalind_FIB()
